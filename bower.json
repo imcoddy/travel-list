@@ -1,0 +1,20 @@
+{
+  "name": "application-name",
+  "version": "0.0.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "angular": "~1.2.14",
+    "angular-animate": "~1.2.0",
+    "angular-bootstrap": "~0.10.0",
+    "angular-route": "~1.2.14",
+    "angular-socket-io": "~0.3.0",
+    "mobile-angular-ui": "~1.1.0-beta.22",
+    "angular-touch": "~1.2.19",
+    "angular-resource": "~1.2.19",
+    "angular-cookie": "~4.0.2"
+  }
+}
