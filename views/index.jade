@@ -1,19 +1,56 @@
 extends layout
 
 block body
-  div(ng-controller='AppCtrl').container
-    h2 Hello {{name}}
-    ul.menu
-      li
-        a(href='view1') view1
-      li
-        a(href='view2') view2
+  div(ng-controller='AppCtrl')
+    input.form-control.app-search(type='search', placeholder='Search..')
+    .scrollable
+      .scrollable-content
+        #accordion.panel-group
+          .panel.panel-default
+              .panel-heading(toggle='', target='collapseOne')
+                h4.panel-title
+                  | Collapsible Group Item #1
+              #collapseOne.panel-collapse.collapse.in(toggleable='', active-class='in', exclusion-group='accordion1', default='active')
+                .panel-body
+                  .list-group
+                    a.list-group-item(ng-repeat='item in scrollItems', href='#')
+                      | {{ item }}
+                      i.fa.fa-chevron-right.pull-right
 
-    div(ng-view)
+            .panel.panel-default
+              .panel-heading(toggle='', target='collapseTwo')
+                h4.panel-title
+                  | Collapsible Group Item #2
+              #collapseTwo.panel-collapse.collapse(toggleable='', active-class='in', exclusion-group='accordion1')
+                .panel-body
+                  .list-group
+                    a.list-group-item(ng-repeat='item in scrollItems', href='#')
+                      | {{ item }}
+                      i.fa.fa-chevron-right.pull-right
 
-    div
-      | Angular Socket.io seed app: v
-      span(app-version)
+            .panel.panel-default
+              .panel-heading(toggle='', target='collapseThree')
+                h4.panel-title
+                  | Collapsible Group Item #3
+              #collapseThree.panel-collapse.collapse(toggleable='', active-class='in', exclusion-group='accordion1')
+                .panel-body
+                  .list-group
+                    a.list-group-item(ng-repeat='item in scrollItems', href='#')
+                      | {{ item }}
+                      i.fa.fa-chevron-right.pull-right
+
+
+      .navbar.navbar-app.navbar-absolute-bottom
+        .btn-group.justified
+            a.btn.btn-navbar(href='http://mobileangularui.com/')
+              i.fa.fa-home.fa-navbar
+              | Docs
+            a.btn.btn-navbar(href='https://github.com/mcasimir/mobile-angular-ui')
+              i.fa.fa-github.fa-navbar
+              | Sources
+            a.btn.btn-navbar(href='https://github.com/mcasimir/mobile-angular-ui/issues')
+              i.fa.fa-exclamation-circle.fa-navbar
+              | Issues
 
   script(src='/socket.io/socket.io.js')
   script(src='bower_components/angular/angular.js')
