@@ -4,17 +4,13 @@
 
 angular.module('myApp.controllers', []).
   controller('AppCtrl', function ($scope, socket) {
-    var scrollItems = [];
-    for (var i=1; i<=5; i++) {
-        scrollItems.push("Item " + i);
-    }
-    $scope.scrollItems = scrollItems;
+    var list1 = ['t1', 't2', 't5'];
+    var list2 = ['t3', 't2', 't5'];
+    var list3 = ['t1', 't3', 't5', 't7', 't9'];
+    var taskLists = [{'id':'list1', 'name': '出行前准备', 'data': list1},{'id':'list2','name': '出行前一天', 'data': list2},{'id':'list3','name': '出行前一刻', 'data': list3}];
+    $scope.taskLists = taskLists;
   }).
   controller('MyCtrl1', function ($scope, socket) {
-    socket.on('send:time', function (data) {
-      $scope.time = data.time;
-    });
   }).
   controller('MyCtrl2', function ($scope) {
-    // write Ctrl here
   });
