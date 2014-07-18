@@ -1,0 +1,16 @@
+//input.form-control.app-search(type='search', placeholder='Add New Item...')
+.scrollable-content
+  #accordion.panel-group
+    .panel.panel-default(ng-repeat='list in taskLists')
+      .panel-heading(toggle='', target='collapse{{ list.name }}')
+        h4.panel-title
+          | {{ list.name }}
+      .panel-collapse.collapse.in(id='collapse{{ list.name }}', toggleable='', active-class='in', exclusion-group='accordion1', default='active')
+        .panel-body
+          .list-group
+            a.list-group-item(ng-repeat='item in list.data', href='#')
+              label(for='collapse{{ list.id }}_{{ $index }}', class="control-label done-{{item.status}}")
+                input(type='checkbox', id='collapse{{ list.id }}_{{ $index }}', ng-model="item.status")
+                | {{ item.text }}
+
+
