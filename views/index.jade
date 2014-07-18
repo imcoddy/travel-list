@@ -2,43 +2,21 @@ extends layout
 
 block body
   div(ng-controller='AppCtrl')
-    input.form-control.app-search(type='search', placeholder='Search..')
+    input.form-control.app-search(type='search', placeholder='Add New Item...')
     .scrollable
       .scrollable-content
         #accordion.panel-group
-          .panel.panel-default
-              .panel-heading(toggle='', target='collapseOne')
-                h4.panel-title
-                  | Collapsible Group Item #1
-              #collapseOne.panel-collapse.collapse.in(toggleable='', active-class='in', exclusion-group='accordion1', default='active')
-                .panel-body
-                  .list-group
-                    a.list-group-item(ng-repeat='item in scrollItems', href='#')
-                      | {{ item }}
-                      i.fa.fa-chevron-right.pull-right
-
-            .panel.panel-default
-              .panel-heading(toggle='', target='collapseTwo')
-                h4.panel-title
-                  | Collapsible Group Item #2
-              #collapseTwo.panel-collapse.collapse(toggleable='', active-class='in', exclusion-group='accordion1')
-                .panel-body
-                  .list-group
-                    a.list-group-item(ng-repeat='item in scrollItems', href='#')
-                      | {{ item }}
-                      i.fa.fa-chevron-right.pull-right
-
-            .panel.panel-default
-              .panel-heading(toggle='', target='collapseThree')
-                h4.panel-title
-                  | Collapsible Group Item #3
-              #collapseThree.panel-collapse.collapse(toggleable='', active-class='in', exclusion-group='accordion1')
-                .panel-body
-                  .list-group
-                    a.list-group-item(ng-repeat='item in scrollItems', href='#')
-                      | {{ item }}
-                      i.fa.fa-chevron-right.pull-right
-
+          .panel.panel-default(ng-repeat='list in taskLists')
+            .panel-heading(toggle='', target='collapse{{ list.name }}')
+              h4.panel-title
+                | {{ list.name }}
+            .panel-collapse.collapse.in(id='collapse{{ list.name }}', toggleable='', active-class='in', exclusion-group='accordion1', default='active')
+              .panel-body
+                .list-group
+                  a.list-group-item(ng-repeat='item in list.data', href='#')
+                    label(for='collapse{{ list.id }}_{{ $index }}', class="control-label done-{{item.status}}")
+                      input(type='checkbox', id='collapse{{ list.id }}_{{ $index }}', ng-model="item.status")
+                      | {{ item.text }}
 
       .navbar.navbar-app.navbar-absolute-bottom
         .btn-group.justified
