@@ -14,8 +14,9 @@ block body
               .panel-body
                 .list-group
                   a.list-group-item(ng-repeat='item in list.data', href='#')
-                    input(type='checkbox', id='collapse{{ list.id }}_{{ $index }}')
-                    label.control-label(for='collapse{{ list.id }}_{{ $index }}')  {{ item }}
+                    label(for='collapse{{ list.id }}_{{ $index }}', class="control-label done-{{item.status}}")
+                      input(type='checkbox', id='collapse{{ list.id }}_{{ $index }}', ng-model="item.status")
+                      | {{ item.text }}
 
       .navbar.navbar-app.navbar-absolute-bottom
         .btn-group.justified

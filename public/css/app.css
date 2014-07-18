@@ -7,3 +7,13 @@
     padding-left: 0;
     margin-bottom: 0px;
 }
+
+.done-true {
+    text-decoration: line-through;
+    color: grey;
+}
+
+.list-group .checkbox {
+    text-align: center;
+    float: left;
+}
