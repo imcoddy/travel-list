@@ -22,7 +22,8 @@ angular.module('myApp.controllers', []).
     return result;
   }
 
-  var list1 = [
+  var tasks = [
+    [
     '购买机票',
     '预定酒店',
     '驾照／身份证',
@@ -31,9 +32,10 @@ angular.module('myApp.controllers', []).
     '保险单扫描件',
     '重要文件备份（扫描件／拍照）',
     '兑换目的地现金',
+    '请假（孩子及其兴趣班）',
     '手机安装旅行相关APP'
-  ];
-  var list2 = [
+  ],
+  [
     '拉杆箱',
     '双肩背包（配行李牌）',
     '贴身小包／钱包',
@@ -98,7 +100,6 @@ angular.module('myApp.controllers', []).
     '紧急联系信息',
     '身份证',
     '设置工作电子邮件自动回复',
-    '请假（孩子及其兴趣班）',
     '结算必要的帐单（充电卡／水卡／煤气卡）',
     '托管自己的宠物、植物',
     '告诉家人或者熟悉的朋友自己的行程',
@@ -107,20 +108,26 @@ angular.module('myApp.controllers', []).
     '准备随身携带文件',
     '其他用品',
     '打包行李'
-
-  ];
-  var list3 = [
+  ],
+  [
     '关好门窗',
     '倒垃圾',
     '收好家里的贵重物品',
     '拔掉家用电器插头',
     '手机设置目的地时区'
+  ]
   ];
 
-  list1 = createTodoList(list1);
-  list2 = createTodoList(list2);
-  list3 = createTodoList(list3);
-  var taskLists = [{'id':'list1', 'name': '出行前准备', 'data': list1},{'id':'list2','name': '出行前一天', 'data': list2},{'id':'list3','name': '出行前一刻', 'data': list3}];
+  var listNames = ['出行前准备', '出行前三天', '出行前一刻'];
+  var taskLists = [];
+  for (var i=0; i < tasks.length; ++i) {
+    var taskList = {
+      'id': 'list' + i,
+      'name': listNames[i],
+      'data': createTodoList(tasks[i])
+    };
+    taskLists.push(taskList);
+  }
   $scope.taskLists = taskLists;
 
 }).
