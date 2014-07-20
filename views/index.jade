@@ -5,9 +5,15 @@ block body
     .navbar-brand.navbar-brand-center
       span Travel Checklist
     .btn-group.pull-left
-      .btn.btn-navbar.sidebar-toggle(ng-click="toggle('mainSidebar')")
-        i.fa.fa-bars
-        |  Menu
+      a(href='/Checklistklist')
+        .btn.btn-navbar.sidebar-toggle(ng-click="toggle('mainSidebar')")
+          i.fa.fa-bars
+          |  Checklist
+    .btn-group.pull-right
+      a(href='/about')
+        .btn.btn-navbar
+          i.fa.fa-comment
+          |  About
   div(ng-controller='AppCtrl')
     #main-content.scrollable(ng-view)
 
