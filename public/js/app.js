@@ -20,16 +20,16 @@ angular.module('myApp', [
 }]).
 config(function ($routeProvider, $locationProvider) {
   $routeProvider.
-    when('/view1', {
-      templateUrl: 'partials/partial1',
-      controller: 'MyCtrl1'
+    when('/checklist', {
+      templateUrl: 'partials/checklist',
+      controller: 'ChecklistCtrl'
     }).
-    when('/view2', {
-      templateUrl: 'partials/partial2',
-      controller: 'MyCtrl2'
+    when('/about', {
+      templateUrl: 'partials/about',
+      controller: 'AboutCtrl'
     }).
     otherwise({
-      //redirectTo: '/view1'
+      redirectTo: '/checklist'
     });
 
   $locationProvider.html5Mode(true);
