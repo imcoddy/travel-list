@@ -1,6 +1,14 @@
 /* app css stylesheet */
+input[type=checkbox], input[type=radio] {
+    margin: 10px;
+}
+
 .panel-default .panel-body {
     padding: 0px;
+}
+
+.scrollable-content {
+    padding-bottom: 50px;
 }
 
 .list-group {
