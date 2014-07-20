@@ -5,6 +5,7 @@
 angular.module('myApp', [
   'ngRoute',
   'mobile-angular-ui',
+  'LocalStorageModule',
 
   'myApp.controllers',
   'myApp.filters',
@@ -14,6 +15,9 @@ angular.module('myApp', [
   // 3rd party dependencies
   'btford.socket-io'
 ]).
+  config(['localStorageServiceProvider',function(localStorageServiceProvider){
+  localStorageServiceProvider.setPrefix('ls');
+}]).
 config(function ($routeProvider, $locationProvider) {
   $routeProvider.
     when('/view1', {
