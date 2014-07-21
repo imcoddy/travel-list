@@ -1,11 +1,12 @@
 'use strict';
 
 /* Controllers */
+var LS_TASK_LIST = 'task-lists';
 
 angular.module('myApp.controllers', []).
-  controller('AppCtrl', function ($scope, socket) {
+  controller('AppCtrl', function ($scope, socket, localStorageService) {
 }).
-  controller('ChecklistCtrl', function ($scope, socket) {
+  controller('ChecklistCtrl', function ($scope, socket, localStorageService) {
   function createTodo(text) {
     return {
       'text': text,
@@ -118,18 +119,35 @@ angular.module('myApp.controllers', []).
   ]
   ];
 
-  var listNames = ['出行前准备', '出行前三天', '出行前一刻'];
-  var taskLists = [];
-  for (var i=0; i < tasks.length; ++i) {
-    var taskList = {
-      'id': 'list' + i,
-      'name': listNames[i],
-      'data': createTodoList(tasks[i])
-    };
-    taskLists.push(taskList);
+  function initTaskLists() {
+    var listNames = ['出行前准备', '出行前三天', '出行前一刻'];
+    var taskLists = [];
+    for (var i=0; i < tasks.length; ++i) {
+      var taskList = {
+        'id': 'list' + i,
+        'name': listNames[i],
+        'data': createTodoList(tasks[i])
+      };
+      taskLists.push(taskList);
+    }
+    return taskLists;
+  }
+
+  function loadTaskLists() {
+    var lists = localStorageService.get(LS_TASK_LIST);
+    return lists;
+  }
+
+  var taskLists = loadTaskLists();
+  if ( !taskLists ) {
+    taskLists = initTaskLists();
+    localStorageService.set(LS_TASK_LIST, taskLists);
   }
   $scope.taskLists = taskLists;
 
+  $scope.$watch('taskLists', function() {
+    localStorageService.set(LS_TASK_LIST, $scope.taskLists);
+  }, true);
 }).
   controller('AboutCtrl', function ($scope) {
 });
